@@ -1,0 +1,38 @@
+Creating node.js to deploy app to Heroku
+
+1. go to your project "c:/user/randulf/desktop/project_folder"
+c:/user/randulf/desktop: cd project_folder
+
+2.npm init -y
+3 npm i express
+4.then create app.js 
+const express = require('express');
+const path = require('path');
+
+const app = express();
+
+app.use(express.json());
+
+app.use(express.static(path.join(__dirname + '/')));
+
+app.get('*', (req, res) => {
+    res.status(200).render('index.html');
+
+});
+
+const port = process.env.PORT || 9000;
+
+app.listen(port, () => {
+	console.log(`App is listening on port ${port}`);
+});
+
+5.open package.json located in your project folder then 
+ in the "test" change to "start": "node app.js"
+6.then npm start
+7.create .gitignore to ignore node_modules 
+before pushing to github and save it to your project folder
+and inside the .gitignore file is node_modules
+
+
+
+
